@@ -1,0 +1,29 @@
+.contact {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    margin: 20px auto;
+    display: flex;
+        justify-content: space-between;
+        align-items: center;
+}
+
+.contact button {
+    width: 70px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact button:hover {
+    background-color: #e0e0e0;
+}
+
+.my-icon {
+    width: 16px ;
+    height: 16px;
+}

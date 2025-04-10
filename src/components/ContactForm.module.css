@@ -1,0 +1,36 @@
+.contactForm {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    width: 400px;
+    margin: 20px auto;
+}
+
+.contactForm label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.contactForm input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.contactForm button {
+    width: 150px;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contactForm button:hover {
+    background-color: #e0e0e0;
+}
