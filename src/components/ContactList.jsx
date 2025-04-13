@@ -3,8 +3,8 @@ import Contact from "./Contact";
 import {
   selectFilteredContacts,
   selectLoading,
-  selectError
-} from "../redux/contactsSlice";
+  selectError,
+} from "../redux/contacts/selectors";
 
 const ContactList = () => {
   const contacts = useSelector(selectFilteredContacts);
