@@ -4,6 +4,7 @@ import {
   addContact,
   deleteContact,
 } from './operations';
+import { logOut } from '../auth/operations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -45,12 +46,18 @@ const contactsSlice = createSlice({
       .addCase(deleteContact.fulfilled, (state, action) => {
         state.isLoading = false;
         state.items = state.items.filter(
-          (contact) => contact.id !== action.payload.id
+          (contact) => contact.id !== action.payload
         );
       })
       .addCase(deleteContact.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      
+      .addCase(logOut.fulfilled, (state) => {
+        state.items = [];
+        state.isLoading = false;
+        state.error = null;
       }),
 });
 

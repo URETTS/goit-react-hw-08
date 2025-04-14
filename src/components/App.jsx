@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout';
 import HomePage from '../pages/HomePage';
-import RegistrationPage from '../pages/RegisterPage';
+import RegistrationPage from '../pages/RegistrationPage';
 import LoginPage from '../pages/LoginPage';
 import PrivateRoute from '../components/PrivateRoute';
 import RestrictedRoute from '../components/RestrictedRoute';

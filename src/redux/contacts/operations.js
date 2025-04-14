@@ -1,7 +1,9 @@
-import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { contactsAPI } from './contactsAPI';
 
-axios.defaults.baseURL = 'https://connections-api.goit.global';
+const setAuthHeader = token => {
+  contactsAPI.defaults.headers.common.Authorization = `Bearer ${token}`;
+};
 
 export const fetchContacts = createAsyncThunk(
   'contacts/fetchAll',
@@ -9,9 +11,9 @@ export const fetchContacts = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      const response = await axios.get('/contacts', {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      setAuthHeader(token);
+
+      const response = await contactsAPI.get('/contacts');
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -25,9 +27,9 @@ export const addContact = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      const response = await axios.post('/contacts', contact, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      setAuthHeader(token);
+
+      const response = await contactsAPI.post('/contacts', contact);
       return response.data;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
@@ -41,9 +43,9 @@ export const deleteContact = createAsyncThunk(
     try {
       const state = thunkAPI.getState();
       const token = state.auth.token;
-      await axios.delete(`/contacts/${contactId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      setAuthHeader(token);
+
+      await contactsAPI.delete(`/contacts/${contactId}`);
       return contactId;
     } catch (e) {
       return thunkAPI.rejectWithValue(e.message);
