@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { register } from '../../redux/auth/operations';
-import css from './RegisterForm.module.css';
-
+import css from './RegisterForm.module.css'; 
 const RegistrationForm = () => {
   const dispatch = useDispatch();
 
@@ -9,14 +8,20 @@ const RegistrationForm = () => {
     e.preventDefault();
     const form = e.target;
 
-    dispatch(
-      register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
-      })
-    );
+    const name = form.elements.name.value.trim();
+    const email = form.elements.email.value.trim();
+    const password = form.elements.password.value;
 
+    // Валідація
+    if (!name || !email || password.length < 7) {
+      alert('Всі поля обовʼязкові. Пароль має бути не менше 7 символів.');
+      return;
+    }
+
+    const credentials = { name, email, password };
+
+    console.log('Submitting registration:', credentials);
+    dispatch(register(credentials));
     form.reset();
   };
 
@@ -31,10 +36,10 @@ const RegistrationForm = () => {
         <input type="email" name="email" required />
       </label>
       <label className={css.label}>
-        Password
-        <input type="password" name="password" required />
+        Password (min 7 chars)
+        <input type="password" name="password" minLength="7" required />
       </label>
-      <button className={css.button} type="submit">Register</button>
+      <button type="submit">Register</button>
     </form>
   );
 };
